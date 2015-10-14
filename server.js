@@ -1,8 +1,9 @@
 var express = require('express');
 var app = express();
 
+app.use(express.static(__dirname + '/client/dist/static'));
 app.get('/', function (req, res) {
-  res.sendFile(__dirname + '/client/index.html');
+  res.sendFile(__dirname + '/client/dist/html/index.html');
 });
 
 var server = app.listen(3000, function () {
