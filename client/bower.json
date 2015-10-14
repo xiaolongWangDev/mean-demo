@@ -1,0 +1,27 @@
+{
+  "name": "mean-demo-client",
+  "version": "0.0.0",
+  "homepage": "https://github.com/xiaolongWangDev/mean-demo",
+  "authors": [
+    "Will(Xiaolong) Wang <xiaolong.wang.dev@gmail.com>"
+  ],
+  "description": "This is an AngularJs client for mean-demo project",
+  "main": "",
+  "moduleType": [],
+  "keywords": [
+    "Angularjs"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "angularjs#~1.4.7",
+    "bootstrap": "~3.3.5"
+  }
+}
