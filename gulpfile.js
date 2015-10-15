@@ -6,12 +6,20 @@ var uglify = require("gulp-uglify");
 var sass = require("gulp-sass");
 var runSequence = require("run-sequence");
 var liveReload = require("gulp-livereload");
+var nodemon = require('gulp-nodemon');
+
 /* tasks */
+
+/* client side */
 
 gulp.task("distJs", function(){
 	return gulp.src(["client/bower_components/jquery/dist/jquery.min.js",
 		"client/bower_components/bootstrap/dist/js/bootstrap.min.js",
-		"client/src/js/**/*.js"])
+		"client/bower_components/angular/angular.min.js",
+		"client/bower_components/angular-route/angular-route.min.js",
+		"client/src/js/angular/controller/**/*.js",
+		"client/src/js/angular/app.js",
+		"client/src/js/*.js"])
 		.pipe(concat('mean-demo.min.js'))
 		.pipe(gulp.dest("client/dist/static/js"))
 		.pipe(liveReload());
@@ -73,4 +81,16 @@ gulp.task("watch", function(callback){
 
 gulp.task("default", function(callback){
 	runSequence("distJs", "distCss", "distHtml", callback);
+});
+
+/* server side */
+gulp.task("serve", ["watch"], function () {
+	nodemon({ script: 'server.js',
+				ext: ['js'],
+          		ignore: ['client/','gulpfile.js']})
+	.on("restart", function(){
+		setTimeout(function() {
+			liveReload.reload(__dirname + "client/dist/html/index.html");
+		}, 3000);
+	});
 });

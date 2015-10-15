@@ -1,14 +1,18 @@
 var express = require('express');
+var routes = require('./routes');
 var app = express();
+var serverPort = 3000;
 
 app.use(express.static(__dirname + '/client/dist/static'));
-app.get('/', function (req, res) {
-  res.sendFile(__dirname + '/client/dist/html/index.html');
+
+app.get('/', routes.index);
+app.get('/partials/:name', function (req, res) {
+  var name = req.params.name;
+  var relativePath = '/client/dist/html/partials/' + name;
+  console.log("sending fragment: " + relativePath);
+  res.sendFile(__dirname + relativePath);
 });
 
-var server = app.listen(3000, function () {
-  var host = server.address().address;
-  var port = server.address().port;
-
-  console.log('Example app listening at http://%s:%s', host, port);
+app.listen(serverPort, function () {
+		console.log('listening at port ' + serverPort);
 });
