@@ -1,4 +1,42 @@
-<div id="crudFragment">
-	<input ng-model="missionToCreate.name"></div>
-	{{missionToCreate.name}}
+<div id="crudFragment" class="container">
+
+	<table class="table table-bordered table-striped">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Name</th>
+				<th></th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr class="success">
+				<th></th>
+				<th><input ng-model="documentToCreate.name"></div></th>
+				<th>
+					<button type="submit" ng-click="create()" class="btn btn-primary">
+						Create
+					</button>
+				</th>
+				<th>
+				</th>
+			</tr>
+			<tr ng-repeat="mission in existingDocuments">
+				<th>{{mission._id}}</th>
+				<th>{{mission.name}}</th>
+				<th>
+					<button type="submit" ng-click="update(mission)" class="btn btn-info">
+						Update
+					</button>
+				</th>
+				<th>
+					<button type="submit" ng-click="delete(mission)" class="btn btn-warning">
+						Delete
+					</button>
+				</th>
+			</tr>
+		</tbody>
+	</table>
+
+	
 </div>

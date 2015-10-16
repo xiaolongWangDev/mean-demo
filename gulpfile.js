@@ -73,15 +73,15 @@ gulp.task("watchHtml", function(){
 	gulp.watch("client/src/html/**/*",["distHtml"]);
 });
 
+gulp.task("default", function(callback){
+	runSequence("distJs", "distCss", "distHtml", callback);
+});
 
-gulp.task("watch", function(callback){
+gulp.task("watch", ["default"], function(callback){
 	liveReload.listen();
 	runSequence("watchJs", "watchCss", "watchHtml", callback);
 });
 
-gulp.task("default", function(callback){
-	runSequence("distJs", "distCss", "distHtml", callback);
-});
 
 /* server side */
 gulp.task("serve", ["watch"], function () {
