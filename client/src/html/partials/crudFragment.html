@@ -6,34 +6,37 @@
 				<th>ID</th>
 				<th>Name</th>
 				<th></th>
-				<th></th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr class="success">
-				<th></th>
-				<th><input ng-model="documentToCreate.name"></div></th>
-				<th>
-					<button type="submit" ng-click="create()" class="btn btn-primary">
+				<td>To be created</td>
+				<td><input ng-model="documentToCreate.name"></div></td>
+				<td>
+					<button type="submit" ng-click="create()" class="btn btn-success">
 						Create
 					</button>
-				</th>
-				<th>
-				</th>
+				</td>
 			</tr>
-			<tr ng-repeat="mission in existingDocuments">
-				<th>{{mission._id}}</th>
-				<th>{{mission.name}}</th>
-				<th>
+		</tbody>
+		<tbody ng-repeat="mission in existingDocuments">
+			<tr ng-class="{info : editDocument===$index}" ng-click="toggleUpdateRow(mission, $index)">
+				<td>{{mission._id}}</td>
+				<td>{{mission.name}}</td>
+				<td>
+					<button type="submit" ng-click="delete(mission)" class="btn btn-danger">
+						Delete
+					</button>
+				</td>
+			</tr>
+			<tr class="info" ng-if="editDocument===$index">
+				<td></td>
+				<td><input ng-model="documentToUpdate.name"></div></td>
+				<td>
 					<button type="submit" ng-click="update(mission)" class="btn btn-info">
 						Update
 					</button>
-				</th>
-				<th>
-					<button type="submit" ng-click="delete(mission)" class="btn btn-warning">
-						Delete
-					</button>
-				</th>
+				</td>
 			</tr>
 		</tbody>
 	</table>

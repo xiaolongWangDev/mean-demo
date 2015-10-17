@@ -26,7 +26,8 @@ app.get('/partials/:name', function (req, res) {
 
 app.route('/mission').
 	get(missionController.read).
-	post(missionController.create);
+	post(missionController.create).
+	put(missionController.update);
 
 app.route('/mission/:mission_id').
 	delete(missionController.delete);

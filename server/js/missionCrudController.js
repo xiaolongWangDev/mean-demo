@@ -20,7 +20,7 @@ exports.create = function(req, res) {
 	});
 };
 
-/* find all document */
+/* find all documents */
 exports.read = function(req, res) {
 
 	Mission.find(function(err, missions){
@@ -28,6 +28,17 @@ exports.read = function(req, res) {
 			res.status(500).send(err);
 		} else {
 			res.send(missions);
+		}
+	});
+};
+
+/* update a document */
+exports.update = function(req, res) {
+	Mission.update({_id: req.body._id}, req.body, function(err, mission){
+		if(err) {
+			res.status(500).send(err);
+		} else {
+			res.send(mission);
 		}
 	});
 };
