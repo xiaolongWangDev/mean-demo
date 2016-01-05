@@ -61,6 +61,8 @@ gulp.task("distHtml", function(){
 gulp.task("watchJs", function(){
 	gulp.watch(["client/bower_components/jquery/dist/jquery.min.js",
 		"client/bower_components/bootstrap/dist/js/bootstrap.min.js",
+		"client/bower_components/angular/angular.min.js",
+		"client/bower_components/angular-route/angular-route.min.js",
 		 "client/src/js/**/*.js"], ["distJs"]);
 });
 
@@ -86,7 +88,7 @@ gulp.task("watch", ["default"], function(callback){
 /* server side */
 gulp.task("serve", ["watch"], function () {
 	nodemon({ script: 'server.js',
-				ext: ['js'],
+				ext: 'js, jsx',
           		ignore: ['client/','gulpfile.js']})
 	.on("restart", function(){
 		setTimeout(function() {
